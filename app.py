@@ -17,16 +17,16 @@ def chat():
     return jsonify({"reply": reply})
 
 #def chat():
-    user_message = request.json.get("message")
-    try:
-        response = openai.ChatCompletion.create(
-            model = "gpt-4",
-            messages = [{"role": "user", 
-                        "content": user_message}]
-        )
-        return jsonify(response)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+#    user_message = request.json.get("message")
+#    try:
+#        response = openai.ChatCompletion.create(
+#            model = "gpt-4",
+#            messages = [{"role": "user", 
+#                        "content": user_message}]
+#        )
+#        return jsonify(response)
+#    except Exception as e:
+#        return jsonify({"error": str(e)}), 500
 
 #if __name__ == "__main__":
-        app.run()
+#        app.run()
