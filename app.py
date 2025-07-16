@@ -9,9 +9,14 @@ openai.api_key = os.getenv("OPEN_API_KEY")
 app = Flask(__name__)
 CORS(app) #manacaからのアクセスを許可
 
-@app.route("/api/chat", 
-methods=["POST"])
+@app.route("/api/chat", methods=["POST"])
 def chat():
+    data = request.get_json()
+    message = data.get("message", "")
+    reply = f"あなたは「{message}」と言いましたね"
+    return jsonify({"reply": reply})
+
+#def chat():
     user_message = request.json.get("message")
     try:
         response = openai.ChatCompletion.create(
@@ -23,5 +28,5 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
         app.run()
