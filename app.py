@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 # MonacaからのCORSを許可
 #CORS(app, supports_credentials=True)
-#アクセス制限・許可
 CORS(app, origins=["https://console.monaca.education"])
 
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
