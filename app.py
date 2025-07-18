@@ -4,7 +4,7 @@ import os
 from flask_cors import CORS
 
 #APIキーを環境変数から取得(Azureに設定)
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPEN_API_KEY")
 
 app = Flask(__name__)
 CORS(app) #manacaからのアクセスを許可
