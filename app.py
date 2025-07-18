@@ -3,15 +3,21 @@ import openai
 import os
 from flask_cors import CORS
 
-#APIキーを環境変数から取得(Azureに設定)
+# APIキーを環境変数から取得
 openai.api_key = os.getenv("OPEN_API_KEY")
 
 app = Flask(__name__)
-#CORS(app) #manacaからのアクセスを許可
+
+# MonacaからのCORSを許可
 CORS(app, origins=["https://console.monaca.education"])
 
-@app.route("/api/chat", methods=["POST"])
+@app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
+    # プリフライトリクエスト対応（CORS対策）
+    if request.method == "OPTIONS":
+        return '', 204
+
+    # POSTリクエスト処理
     data = request.get_json()
     message = data.get("message", "")
     reply = f"あなたは「{message}」と言いましたね"
