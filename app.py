@@ -9,8 +9,8 @@ openai.api_key = os.getenv("OPEN_API_KEY")
 app = Flask(__name__)
 
 # MonacaからのCORSを許可
-CORS(app, supports_credentials=True)
-#CORS(app, origins=["https://console.monaca.education"])
+#CORS(app, supports_credentials=True)
+CORS(app, origins=["https://console.monaca.education"])
 
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
